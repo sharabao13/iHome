@@ -75,7 +75,7 @@ func (c *SessionController) Login() {
 	o := orm.NewOrm()
 	user := models.User{Name: resp["mobile"].(string)}
 	qs := o.QueryTable("user")
-	_, err := qs.Filter("mobile", "111").All(&user)
+	_, err := qs.Filter("mobile", resp["mobile"]).All(&user)
 
 	if err != nil {
 		resp["errno"] = models.RECODE_DATAERR
@@ -88,7 +88,6 @@ func (c *SessionController) Login() {
 		resp["errno"] = models.RECODE_DATAERR
 		resp["errmsg"] = models.RecodeText(models.RECODE_DATAERR)
 		logs.Info("==============name==========密码匹配")
-
 		return
 	}
 	//4. 添加session
