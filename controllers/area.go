@@ -76,7 +76,9 @@ func (c *AreaController) GetArea() {
 		logs.Info("封装json失败")
 		return
 	}
-	cache_conn.Put(context.TODO(), "area", json_str, time.Second*1200)
+	if cachePutErr := cache_conn.Put(context.TODO(), "area", json_str, time.Second*1200); cachePutErr != nil {
+		logs.Info("======================= 写入缓存失败==========================")
+	}
 	//封装成json返回前端
 	//logs.Info("query data success,resp=", resp)
 }
