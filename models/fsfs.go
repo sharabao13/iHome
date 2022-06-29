@@ -7,7 +7,8 @@ import (
 
 func FdfsUploadByFileName(fileName string) (groupName, fileId string, err error) {
 	logs.Info("================== Start Connection ==================")
-	fdfsClient, err := fdfs_client.NewFdfsClient("D:\\iHome\\iHome\\conf\\client.conf")
+	//fdfsClient, err := fdfs_client.NewFdfsClient("D:\\iHome\\iHome\\conf\\client.conf")
+	fdfsClient, err := fdfs_client.NewFdfsClient("E:\\iHome\\iHome\\conf\\client.conf")
 	if err != nil {
 		logs.Info("new fdfsclient error", err.Error())
 		return "", "", err
