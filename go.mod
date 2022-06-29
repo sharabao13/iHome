@@ -4,6 +4,8 @@ go 1.18
 
 require (
 	github.com/beego/beego/v2 v2.0.4
+	github.com/sharabao13/fdfs_client v0.0.0-20220624082934-564f07351e3f
+	github.com/tedcy/fdfs_client v0.0.0-20200106031142-21a04994525a
 	golang.org/x/net v0.0.0-20210525063256-abc453219eb5
 )
 
@@ -24,11 +26,9 @@ require (
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.32.1 // indirect
 	github.com/prometheus/procfs v0.7.3 // indirect
-	github.com/sharabao13/fdfs_client v0.0.0-20220624082934-564f07351e3f // indirect
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18 // indirect
 	github.com/sirupsen/logrus v1.6.0 // indirect
 	github.com/smartystreets/assertions v0.0.0-20180927180507-b2de0cb4f26d // indirect
-	github.com/tedcy/fdfs_client v0.0.0-20200106031142-21a04994525a // indirect
 	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a // indirect
 	golang.org/x/sys v0.0.0-20220114195835-da31bd327af9 // indirect
 	golang.org/x/text v0.3.6 // indirect

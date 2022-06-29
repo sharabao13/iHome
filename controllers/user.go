@@ -2,18 +2,20 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/beego/beego/v2/client/orm"
 	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
 	_ "github.com/go-sql-driver/mysql"
 	"iHome/models"
+	"path"
 )
 
 type UserController struct {
 	beego.Controller
 }
 
-func (this *UserController) RetData(resp map[string]interface{}) {
+func (this *UserController) RetData(resp interface{}) {
 	this.Data["json"] = resp
 	this.ServeJSON()
 }
@@ -46,4 +48,21 @@ func (c *UserController) Reg() {
 	resp["errmsg"] = models.RecodeText(models.RECODE_OK)
 	c.SetSession("name", user.Name)
 
+}
+
+func (c *UserController) Avatar() {
+	resp := SessionResp{Errno: models.RECODE_OK, Errmsg: models.RecodeText(models.RECODE_OK)}
+	defer c.RetData(&resp)
+	fileData, fileHandler, err := c.GetFile("avatar")
+	if err != nil {
+		resp.Errno = models.RECODE_REQERR
+		resp.Errmsg = models.RecodeText(models.RECODE_REQERR)
+		return
+	}
+	fmt.Println(fileData)
+	//2. 得到文件后缀
+	suffix := path.Ext(fileHandler.Filename)
+	fmt.Println(suffix)
+
+	//3. 存储文件到fastdfs
 }

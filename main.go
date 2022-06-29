@@ -1,24 +1,19 @@
 package main
 
 import (
-	"fmt"
 	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
 	"github.com/beego/beego/v2/server/web/context"
-	"iHome/models"
 	_ "iHome/models"
 	_ "iHome/routers"
-	"log"
 	"net/http"
 	"strings"
 )
 
 func main() {
-	name, id, err := models.FdfsUploadByFileName("testDemo.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(name, id)
+	//fileId := models.UploadFile("testDemo.txt")
+	//fmt.Println(fileId)
+	//models.FdfsUploadByFileName("testDemo.txt")
 	ignoreStaticPath()
 	beego.Run()
 }
