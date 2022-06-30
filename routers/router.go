@@ -14,5 +14,11 @@ func init() {
 	beego.Router("/api/v1.0/sessions", &controllers.SessionController{}, "post:Login")
 	//avatar api/v1.0/user/avatar
 	beego.Router("/api/v1.0/user/avatar", &controllers.UserController{}, "post:Avatar")
+	//api/v1.0/user
+	beego.Router("/api/v1.0/user", &controllers.UserController{}, "get:GetUserData")
+	//api/v1.0/user/name
+	beego.Router("/api/v1.0/user/name", &controllers.UserController{}, "put:UpdateUserName")
+	//api/v1.0/user/auth
+	beego.Router("/api/v1.0/user/auth", &controllers.UserController{}, "get:GetUserData;post:PostRealName")
 
 }

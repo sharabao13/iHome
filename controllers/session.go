@@ -91,8 +91,8 @@ func (c *SessionController) Login() {
 		return
 	}
 	//4. 添加session
-	c.SetSession("name", resp["mobile"])
-	c.SetSession("mobile", resp["mobile"])
+	c.SetSession("name", user.Name)
+	//c.SetSession("mobile", resp["mobile"])
 	c.SetSession("user_id", user.Id)
 	//5. 返回json数据给前端
 
