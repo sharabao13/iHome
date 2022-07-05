@@ -28,6 +28,18 @@ type UserResp struct {
 	Data   interface{} `json:"data"`
 }
 
+type UserNameResp struct {
+	Errno  string      `json:"errno"`
+	Errmsg string      `json:"errmsg"`
+	Data   interface{} `json:"data"`
+}
+
+type PostUserNameResp struct {
+	Errno  string      `json:"errno"`
+	Errmsg string      `json:"errmsg"`
+	Data   interface{} `json:"data"`
+}
+
 type UserController struct {
 	beego.Controller
 }
@@ -146,7 +158,7 @@ func (c *UserController) GetUserData() {
 
 //UpdataUserName
 func (c *UserController) UpdateUserName() {
-	resp := UserResp{Errno: models.RECODE_OK, Errmsg: models.RecodeText(models.RECODE_OK)}
+	resp := UserNameResp{Errno: models.RECODE_OK, Errmsg: models.RecodeText(models.RECODE_OK)}
 	defer c.RetData(&resp)
 	//从session得到user_id
 	user_id := c.GetSession("user_id")
@@ -190,7 +202,7 @@ func (c *UserController) UpdateUserName() {
 
 //PostRealName
 func (c *UserController) PostRealName() {
-	resp := UserResp{Errno: models.RECODE_OK, Errmsg: models.RecodeText(models.RECODE_OK)}
+	resp := PostUserNameResp{Errno: models.RECODE_OK, Errmsg: models.RecodeText(models.RECODE_OK)}
 	defer c.RetData(&resp)
 	//1. 从session得到user_id
 	user_id := c.GetSession("user_id")
@@ -218,8 +230,10 @@ func (c *UserController) PostRealName() {
 		resp.Errmsg = models.RecodeText(resp.Errno)
 		return
 	}
+
 	user.Real_name = realName.Name
 	user.Id_card = realName.Card
+
 	if _, err := o.Update(&user); err != nil {
 		resp.Errno = models.RECODE_REQERR
 		resp.Errmsg = models.RecodeText(resp.Errno)
